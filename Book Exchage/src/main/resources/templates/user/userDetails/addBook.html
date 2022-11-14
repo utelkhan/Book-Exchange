@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Book</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <h2>Add Book</h2>
+    <form class="px-4 py-3" method="post" action="#" th:action="@{/user/user-addBook}" th:object="${book}">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text"  class="form-control" th:field="*{title}" id="title" placeholder="Title">
+        </div>
+        <div class="mb-3">
+            <label for="rating" class="form-label">Rating</label>
+            <input type="text"  class="form-control" th:field="*{rating}" id="rating" placeholder="Rating">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Book</button>
+    </form>
+</body>
+</html>

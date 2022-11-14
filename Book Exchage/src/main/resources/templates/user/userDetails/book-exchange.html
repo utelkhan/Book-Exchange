@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User-info</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<table class="table table-hover table-dark">
+    <tbody>
+    <td>Me:</td>
+    <td th:text="${currentUser.firstName}"></td>
+    <td th:text="${currentUser.lastName}"></td>
+    <td th:text="${currentUser.userName}"></td>
+    <td th:text="${currentUser.email}"></td>
+    <td th:text="${currentUser.status.statusName}"></td>
+    <td th:text="${currentUser.role.roleName}"></td>
+    <td><a th:href="@{/logout}" method="get" class="btn btn-primary btn-sm">Logout</a></td>
+    </tbody>
+</table>
+
+<div th:switch="${books}">
+
+    <h2 th:case="null">User has not books yet!</h2>
+
+    <div th:case="*">
+        <h2> Choose your book:</h2>
+        <br/>
+        <table class="table table-hover">
+            <thead class="table-info">
+            <th>Id</th>
+            <th>Title</th>
+            <th>Rating</th>
+            <th>IsThisBookAvailableForExchange</th>
+            </thead>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.id}"></td>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.rating}"></td>
+                <td th:text="${book.isThisBookAvailableForExchange}"></td>
+                <td>
+                    <form action="#" th:action="@{./{b2id}(b2id=${book.id})}" method="post">
+                        <input class="btn btn-primary btn-sm" type="submit" value="Exchange">
+                    </form>
+                </td>
+        </table>
+    </div>
+</div>
+<br>
+
+</body>
+</html>
